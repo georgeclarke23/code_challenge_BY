@@ -71,3 +71,4 @@ target/
 .venv
 .output
 .env
+src/data/
