@@ -35,7 +35,7 @@ def run(spark: SparkSession):
 
         logger.info("Application Successfully Completed")
         end = time.time()
-        logger.info(__name__, "Process Finished take {0:.2f} secs".format((end - start)))
+        logger.info("Process Finished take {0:.2f} secs".format((end - start)))
 
     except Exception as e:
         logger.error(f"Job failed {e}")
