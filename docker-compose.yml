@@ -1,0 +1,14 @@
+version: '2'
+services:
+  spark-application:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    volumes:
+      - ./src/data:/opt/src/data:ro
+    environment:
+      SOURCE_PATH: $SOURCE_PATH
+
+
+
