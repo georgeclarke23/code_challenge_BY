@@ -23,6 +23,6 @@ COPY src /opt/src
 # Define working directory
 WORKDIR /opt
 
-ENTRYPOINT ["make","run"]
+ENTRYPOINT ["make","run/spark"]
 
 

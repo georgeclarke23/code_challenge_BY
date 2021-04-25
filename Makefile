@@ -46,7 +46,7 @@ fmt:
 	. .venv/bin/activate && pylint -r n src/main.py src/jobs
 
 test:
-	. .venv/bin/activate && pytest ./tests/* -vv
+	. .venv/bin/activate && pytest ./tests/* -s -vv
 
 build: clean deps
 	cd ./src && zip -x main.py -x \*libs\* -r ./jobs.zip .
