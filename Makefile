@@ -17,6 +17,9 @@ default: clean deps-dev deps tests fmt run
 .venv:
 	if [ ! -e ".venv/bin/activate_this.py" ] ; then virtualenv --clear .venv ; fi
 
+.venv/local:
+	python3 -m venv .venv
+
 clean: clean-build clean-pyc clean-test
 
 clean-build:
@@ -39,14 +42,22 @@ clean-test:
 deps: .venv
 	. .venv/bin/activate && pip install -U -r requirements.txt -t ./src/libs
 
+deps/local: .venv
+	. .venv/bin/activate && pip install -U -r requirements.txt
+
 deps-dev: .venv
 	. .venv/bin/activate && pip install -U -r requirements-dev.txt
+
+download: clean
+	cd src/data && curl https://nyc-tlc.s3.amazonaws.com/trip+data/yellow_tripdata_2020-07.csv -o 2020-07.csv \
+	&& curl https://nyc-tlc.s3.amazonaws.com/trip+data/yellow_tripdata_2020-08.csv -o 2020-08.csv \
+	&& curl https://nyc-tlc.s3.amazonaws.com/trip+data/yellow_tripdata_2020-09.csv -o 2020-09.csv
 
 fmt:
 	. .venv/bin/activate && pylint -r n src/main.py src/jobs
 
 test:
-	. .venv/bin/activate && pytest ./tests/* -s -vv
+	. .venv/bin/activate && pytest ./tests/* -s -vv && pytest --cov=src/jobs/code_challenge tests/
 
 build: clean deps
 	cd ./src && zip -x main.py -x \*libs\* -r ./jobs.zip .
@@ -60,3 +71,4 @@ run: clean .venv
 
 docker/run: clean
 	docker-compose up --build
+
