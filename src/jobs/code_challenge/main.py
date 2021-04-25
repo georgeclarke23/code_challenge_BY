@@ -10,6 +10,11 @@ from .app.transform.transform import Transform
 
 
 def run(spark: SparkSession):
+    """
+    Entry point for this job
+    :param spark: Spark session passed from the Main Jobs Interface
+    :return:
+    """
     logger = log.getLogger(__name__)
     try:
         start = time.time()
