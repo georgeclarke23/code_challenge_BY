@@ -2,6 +2,10 @@ import os
 
 
 class Context:
+    """
+    - The Context is passed around to all tasks of the application
+    - Shared functions and variables can be accessed from the Context
+    """
     def __init__(self, app_name=None, spark=None, logger=None):
         self.logger = logger
         self.app_name = app_name
@@ -17,7 +21,7 @@ class Context:
         if key in self.state:
             return self.state[key]
         else:
-            return os.environ[key]
+            return os.environ.get(key)
 
     def set(self, *args, **kwargs):
         """

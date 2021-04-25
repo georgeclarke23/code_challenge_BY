@@ -11,7 +11,7 @@ class Ingest(ExecutionContainer):
         self.context = context
         self.spark = self.context.spark
         self.__logger = self.context.logger.getLogger(__name__)
-        self.source_path = os.path.join(os.getcwd(), self.context.get("SOURCE_PATH"), "*.json")
+        self.source_path = os.path.join(os.getcwd(), self.context.get("SOURCE_PATH"), "*.csv")
 
     def execute(self) -> DataFrame:
         self.__logger.info(f"Reading file from {self.source_path}")

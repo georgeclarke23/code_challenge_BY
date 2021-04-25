@@ -41,7 +41,7 @@ class Transform(ExecutionContainer):
     def daily_average_of_trips(self, dateframe: DataFrame) -> DataFrame:
         self.__logger.info("Transforming dataframe to get daily average of trips")
         return dateframe.groupBy("tpep_dropoff_date").agg(
-            avg("trip_distance").alias("avg_trip_distance")
+            avg("trip_distance").alias("daily_avg_trip_distance")
         )
 
     def extract_month_from_drop_off_datetime_col(
