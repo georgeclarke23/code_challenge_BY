@@ -57,7 +57,7 @@ fmt:
 	. .venv/bin/activate && pylint -r n src/main.py src/jobs
 
 test:
-	. .venv/bin/activate && pytest ./tests/* -s -vv && pytest --cov=src/jobs/code_challenge tests/
+	. .venv/bin/activate && pytest ./tests/* -s -vv && python3 -m pytest --cov-report term-missing --cov=src/jobs/code_challenge/ tests/
 
 build: clean deps
 	cd ./src && zip -x main.py -x \*libs\* -r ./jobs.zip .
