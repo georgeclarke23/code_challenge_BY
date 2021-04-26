@@ -1,4 +1,4 @@
-import logging as log
+import logging
 import time
 
 from pyspark.sql import SparkSession
@@ -15,11 +15,12 @@ def run(spark: SparkSession):
     :param spark: Spark session passed from the Main Jobs Interface
     :return:
     """
-    logger = log.getLogger(__name__)
+    logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
+    logger = logging.getLogger(__name__)
     try:
         start = time.time()
 
-        context = Context("BY_Engineering_Code_Challenge", spark, log)
+        context = Context("BY_Engineering_Code_Challenge", spark, logging)
 
         logger.info("Application Started")
 
