@@ -12,6 +12,7 @@ class Transform(ExecutionContainer):
     Transformation class
     - All transformation to the ingested dataset are completed here.
     """
+
     def __init__(self, context: Context, ingest: Ingest):
         super().__init__(context)
         self.context = context

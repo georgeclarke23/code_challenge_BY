@@ -14,7 +14,6 @@ class ExecutionContainer(ABC):
     @abstractmethod
     def execute(self):
         """Run the execution to produce the dataframe"""
-        pass
 
     @property
     def dataframe(self):

@@ -15,7 +15,10 @@ def run(spark: SparkSession):
     :param spark: Spark session passed from the Main Jobs Interface
     :return:
     """
-    logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
+    logging.basicConfig(
+        format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+        level=logging.INFO,
+    )
     logger = logging.getLogger(__name__)
     try:
         start = time.time()
@@ -39,5 +42,5 @@ def run(spark: SparkSession):
         logger.info("Process Finished take {0:.2f} secs".format((end - start)))
 
     except Exception as e:
-        logger.error(f"Job failed {e}")
+        logger.error("Job failed: %s", e)
         raise Exception("Failure Occured whiles running the code challenge job") from e
